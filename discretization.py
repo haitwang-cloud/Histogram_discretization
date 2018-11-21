@@ -96,23 +96,28 @@ def FreedmanDiaconisChoice(data, features):
 
 
 if __name__ == '__main__':
-    data = pd.read_csv('medData.csv', encoding='utf-8')
-    features = list(data.columns[1:])
+    data = pd.read_csv('UCI_CAD.csv', encoding='utf-8')
+    features = list(data.columns[:-1])
+
     print(features)
+
     dataSR = squareRootChoice(data, features)
-    # print(dataSR)
-    dataSR.to_csv('medData_SR.csv',index=False)
+    dataSR.to_csv('UCI_CAD_SR.csv',index=False)
+
     dataSF = SturgesFormula(data, features)
-    dataSF.to_csv('medData_SF.csv',index=False)
-    # print(dataSF)
+    dataSF.to_csv('UCI_CAD_SF.csv', index=False)
+
     dataRR = RiceRule(data, features)
-    dataRR.to_csv('medData_RR.csv',index=False)
-    # print(dataRR)
+    dataRR.to_csv('UCI_CAD_RR.csv', index=False)
+
+
     dataDF=DoaneFormula(data, features)
-    dataDF.to_csv('medData_DF.csv',index=False)
-    # print(dataDF)
+    dataDF.to_csv('UCI_CAD_DF.csv', index=False)
+
     dataSN = ScottNormalReferenceRule(data, features)
-    dataSN.to_csv('medData_SN.csv',index=False)
-    # print(dataSN)
+    dataSN.to_csv('UCI_CAD_SN.csv', index=False)
+
+
     # dataFD=FreedmanDiaconisChoice(data, features)
-    # print(dataFD)
+    # dataFD.to_csv('UCI_CAD_FD.csv', index=False)
+
