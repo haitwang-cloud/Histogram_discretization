@@ -1,5 +1,5 @@
 # Histogram_discretization
-Python implementation of some discretiation algorithms:
+Python implementation of the following discretiation algorithms:
 1. Square-root choice
 2. Sturges' formula
 3. Rice Rule
@@ -13,7 +13,7 @@ https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width
 ![avatar](demo.jpg)
 
 ### Example:
-    python discretization.py
+    python demo.py
     
 ### Dependencies:
 1. pandas

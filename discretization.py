@@ -20,7 +20,6 @@ def squareRootChoice(data, features):
         # print(pd.cut(data[item],bins=bins,labels=False))
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('squareRootChoice OK!')
     return dataNew
 
 
@@ -33,7 +32,6 @@ def SturgesFormula(data, features):
         # print(pd.cut(data[item],bins=bins,labels=False))
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('SturgesFormula OK!')
     return dataNew
 
 
@@ -46,7 +44,6 @@ def RiceRule(data, features):
         # print(pd.cut(data[item],bins=bins,labels=False))
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('RiceRule OK!')
     return dataNew
 
 
@@ -59,7 +56,6 @@ def DoaneFormula(data, features):
         # print('DoaneFormula bins=', bins)
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('DoaneFormula OK!')
     return dataNew
 
 
@@ -74,7 +70,6 @@ def ScottNormalReferenceRule(data, features):
         # print('cottNormalReferenceRule bins=', bins)
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('ScottNormalReferenceRule OK!')
     return dataNew
 
 
@@ -85,39 +80,10 @@ def FreedmanDiaconisChoice(data, features):
         # 分子与分母的计算
         molecule, denominator = 2 * iqr(data[item]), math.pow(length, 1 / 3)
         widthNew = molecule / denominator
-        if molecule==0:
-            raise ZeroDivisionError("iqr() value =0,please check data!!!!!!!!!!!!!!!!!!!!!")
+        if molecule == 0:
+            raise ZeroDivisionError("iqr() value =0, please check data!")
         # # print(item, iqr(data[item]), denominator, widthNew)
         bins = math.ceil((data[item].max() - data[item].min()) / widthNew)
         tmp = pd.cut(data[item], bins=bins, labels=False)
         dataNew[item] = tmp
-    print('FreedmanDiaconisChoice OK!')
     return dataNew
-
-
-if __name__ == '__main__':
-    data = pd.read_csv('UCI_CAD.csv', encoding='utf-8')
-    features = list(data.columns[:-1])
-
-    print(features)
-
-    dataSR = squareRootChoice(data, features)
-    dataSR.to_csv('UCI_CAD_SR.csv',index=False)
-
-    dataSF = SturgesFormula(data, features)
-    dataSF.to_csv('UCI_CAD_SF.csv', index=False)
-
-    dataRR = RiceRule(data, features)
-    dataRR.to_csv('UCI_CAD_RR.csv', index=False)
-
-
-    dataDF=DoaneFormula(data, features)
-    dataDF.to_csv('UCI_CAD_DF.csv', index=False)
-
-    dataSN = ScottNormalReferenceRule(data, features)
-    dataSN.to_csv('UCI_CAD_SN.csv', index=False)
-
-
-    # dataFD=FreedmanDiaconisChoice(data, features)
-    # dataFD.to_csv('UCI_CAD_FD.csv', index=False)
-
